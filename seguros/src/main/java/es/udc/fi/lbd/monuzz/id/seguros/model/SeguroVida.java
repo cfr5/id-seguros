@@ -5,7 +5,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.*;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "seguroId")
+@Table(name="SEGUROVIDA")
 public class SeguroVida extends Seguro {
 
 	private Float importe;
@@ -30,10 +34,12 @@ public class SeguroVida extends Seguro {
 	}
 
 	// GETTERS
-	
+	@Column(nullable=false)
 	public Float getImporte() {
 		return this.importe;
 	}
+	
+	@OneToMany(mappedBy = "login", fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
 	public Set<Cliente> getBeneficiarios() {
 		return this.beneficiarios;
 	}

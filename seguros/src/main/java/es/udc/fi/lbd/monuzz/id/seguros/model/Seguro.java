@@ -2,9 +2,14 @@ package es.udc.fi.lbd.monuzz.id.seguros.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.*;
+
 //@SuppressWarnings("unused")
 
-public class Seguro {
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="SEGURO")
+public abstract class Seguro {
 	
 	private Long idSeguro;
 	private String codigo;
@@ -29,19 +34,30 @@ public class Seguro {
 
 
 	// getters
-	
+	@Id
+	@SequenceGenerator(name = "seguroId", sequenceName = "id_seguro_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seguro_Id")
+	@Column
 	public Long getIdSeguro() {
 		return this.idSeguro;
 	}
+	
+	@Column(unique=true, nullable=false)
 	public String getCodigo() {
 		return codigo;
 	}
+	
+	@Column(nullable=false)
 	public Timestamp getDataInicio() {
 		return dataInicio;
-	}	
+	}
+	
+	@Column
 	public Timestamp getDataFin() {
 		return dataFin;
 	}
+	
+	@Column(nullable=false)
 	public Cliente getSubscritor() {
 		return this.subscritor;
 	}

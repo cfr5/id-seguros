@@ -7,8 +7,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.persistence.*;
 
-
+@Entity
+@PrimaryKeyJoinColumn(name = "seguroId")
+@Table(name="SEGUROFOGAR")
 public class SeguroFogar extends Seguro {
 
 	private String enderezo;	
@@ -32,10 +35,12 @@ public class SeguroFogar extends Seguro {
 	}
 
 	//GETTERS
-	
+	@Column(nullable=false)
 	public String getEnderezo() {
 		return this.enderezo;
 	}
+	
+	@Column
 	public Map<String, Float> getCoberturas() {
 		return this.coberturas;
 	}
