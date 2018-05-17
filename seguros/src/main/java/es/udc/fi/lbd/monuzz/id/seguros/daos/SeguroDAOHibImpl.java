@@ -1,5 +1,6 @@
 package es.udc.fi.lbd.monuzz.id.seguros.daos;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -73,58 +74,75 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 		return seguro;
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<SeguroFogar> findAllSegurosFogar() {
-		// TODO Auto-generated method stub
-		return null;
+		List<SeguroFogar> seguro = sessionFactory.getCurrentSession().createQuery("from SeguroFogar s "
+				+ "order by s.dataInicio").list();
+		return seguro;
 	}
 
-	@Override
+	//COIDAO CON ESTOS 3
 	public Cliente findSubscritorSeguro(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = (Cliente) sessionFactory.getCurrentSession().createQuery("from Seguro s "
+				+ "where s.subscritor = :subscritor").setParameter("subscritor", meuSeguro.getSubscritor()).uniqueResult();
+		return cliente;
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<Seguro> findAllSegurosSubscritor(Cliente meuCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Seguro> seguro = null;
+		seguro = sessionFactory.getCurrentSession().createQuery("select c.segurosSubscritos from Cliente c "
+				+ "where c.cliente_Id= :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+		return seguro;
 	}
 
-	@Override
+	
+	@SuppressWarnings("unchecked")
 	public Set<Cliente> findAllBeneficiariosSeguroVida(SeguroVida meuSeguro) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Cliente> beneficiarios = new HashSet<Cliente>();
+		beneficiarios = (Set<Cliente>) sessionFactory.getCurrentSession().createQuery("select s.beneficiarios from SeguroVida s"
+				+ "where s.seguro_Id = :seguro_Id").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
+		return beneficiarios;
 	}
 
-	@Override
+	
+	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosVidaBeneficiario(Cliente meuCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		List<SeguroVida> seguro = null;
+		seguro = sessionFactory.getCurrentSession().createQuery("select c.segurosSubscritos from Cliente c"
+				+ "where c.cliente_Id = :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+		return seguro;
 	}
 
-	@Override
+	
+	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosSenBeneficiarios() {
-		// TODO Auto-generated method stub
-		return null;
+		List<SeguroVida> seguro = null;
+		seguro = sessionFactory.getCurrentSession().createQuery("from SeguroVida s where s.beneficiario is NULL order by s.dataInicio desc").list();
+		return seguro;
 	}
 
-	@Override
+	
+	@SuppressWarnings("unchecked")
 	public List<Cliente> findAllClientesSenSeguros() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> cliente = null;
+		cliente = sessionFactory.getCurrentSession().createQuery("from Cliente c where c.segurosSubscritos is NULL order by c.login").list();
+		return cliente;
 	}
 
-	@Override
+
+	@SuppressWarnings("unchecked")
 	public List<Cliente> findAllClientesSenSeguroVida() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> cliente = null;
+		cliente = sessionFactory.getCurrentSession().createQuery("from Cliente c where c.segurosSubscritos is not in (select s.codigo from SeguroVida s) order by c.login").list();
+		return cliente;
 	}
 
-	@Override
+	
 	public Long findNumBeneficiariosCliente(Cliente meuCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		Long beneficiarios = (Long) sessionFactory.getCurrentSession().createQuery("select count(s.beneficiarios) from SeguroVida s"
+				+ "where s.suscriptor = :meuCliente").setLong("meuCliente", meuCliente.getIdCliente()).uniqueResult();
+		return beneficiarios;
 	}
 
 

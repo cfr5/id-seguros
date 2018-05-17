@@ -2,47 +2,65 @@ package es.udc.fi.lbd.monuzz.id.seguros.daos;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import es.udc.fi.lbd.monuzz.id.seguros.model.Cliente;
 
 
 //@SuppressWarnings("unchecked")
 
+@Repository
 public class ClienteDAOHibImpl implements ClienteDAO {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	@Override
+
 	public Long create(Cliente meuCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		if (meuCliente == null) {
+			throw new RuntimeException("Cliente non pode ser nulo");
+		}
+		Long id = (Long) sessionFactory.getCurrentSession().save(meuCliente);
+		return id;
 	}
 
-	@Override
+
 	public void update(Cliente meuCliente) {
-		// TODO Auto-generated method stub
+		if (meuCliente == null)
+			throw new RuntimeException("Cliente Invalido: O Cliente non pode ser nulo");
+		sessionFactory.getCurrentSession().update(meuCliente);	
 		
 	}
 
-	@Override
+
 	public void remove(Cliente meuCliente) {
-		// TODO Auto-generated method stub
+		if (meuCliente == null)
+			throw new RuntimeException("Cliente Invalido: O Cliente non pode ser nulo");
+		sessionFactory.getCurrentSession().delete(meuCliente);
 		
 	}
 
-	@Override
+
 	public Cliente findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = (Cliente) sessionFactory.getCurrentSession().get(Cliente.class, id);
+		return cliente;
 	}
 
-	@Override
+
 	public Cliente findByLogin(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = (Cliente) sessionFactory.getCurrentSession().createQuery("from Cliente c "
+				+ "where c.login = :login").setParameter("login",login).uniqueResult();
+		return cliente;
 	}
 
-	@Override
+
+	@SuppressWarnings("unchecked")
 	public List<Cliente> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> cliente = sessionFactory.getCurrentSession().createQuery("from Cliente c "
+				+ "order by c.nome desc").list();
+		return cliente;
 	}
 
 
