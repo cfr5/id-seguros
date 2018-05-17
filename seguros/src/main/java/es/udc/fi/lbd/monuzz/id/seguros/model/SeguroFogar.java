@@ -43,7 +43,7 @@ public class SeguroFogar extends Seguro {
 	@ElementCollection
 	@CollectionTable (name = "COBERTURAS", joinColumns = {@JoinColumn(name = "seguro_Id")})//(para indicar táboa e chave foránea)
 	@MapKeyColumn(name = "ETIQUETA")
-	@Column(name = "COBERTURA") //(para indicar a columna cos valores da colección)
+	//@Column(name = "COBERTURA") //(para indicar a columna cos valores da colección)
 	public Map<String, Float> getCoberturas() {
 		return this.coberturas;
 	}

@@ -41,8 +41,8 @@ public class Cliente {
 	// GETTERS
 	
 	@Id
-	@SequenceGenerator(name = "clienteId", sequenceName = "id_cliente_seq")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clienteId")
+	@SequenceGenerator(name = "cliente_Id", sequenceName = "id_cliente_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cliente_Id")
 	@Column
 	public Long getIdCliente() {
 		return idCliente;
