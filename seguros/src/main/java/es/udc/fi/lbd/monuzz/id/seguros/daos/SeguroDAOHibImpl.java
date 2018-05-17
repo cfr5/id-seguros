@@ -3,7 +3,9 @@ package es.udc.fi.lbd.monuzz.id.seguros.daos;
 import java.util.List;
 import java.util.Set;
 
-
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import es.udc.fi.lbd.monuzz.id.seguros.model.SeguroVida;
 import es.udc.fi.lbd.monuzz.id.seguros.model.Cliente;
@@ -12,49 +14,63 @@ import es.udc.fi.lbd.monuzz.id.seguros.model.SeguroFogar;
 
 //@SuppressWarnings("unchecked")
 
-
+@Repository
 public class SeguroDAOHibImpl implements SeguroDAO {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	@Override
+	
 	public Long create(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
-		return null;
+		if (meuSeguro == null) {
+			throw new RuntimeException("Seguro non pode ser nulo");
+		}
+		Long id = (Long) sessionFactory.getCurrentSession().save(meuSeguro);
+		return id;
 	}
 
-	@Override
+	
 	public void update(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
-		
+		if (meuSeguro == null)
+			throw new RuntimeException("Seguro Invalido: O Seguro non pode ser nulo");
+		sessionFactory.getCurrentSession().update(meuSeguro);	
 	}
 
-	@Override
+	
 	public void remove(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
+		if (meuSeguro == null)
+			throw new RuntimeException("Seguro Invalido: O Seguro non pode ser nulo");
+		sessionFactory.getCurrentSession().delete(meuSeguro);	
 		
 	}
 
-	@Override
+	
 	public Seguro findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Seguro seguro = (Seguro) sessionFactory.getCurrentSession().get(Seguro.class, id);
+		return seguro;
 	}
 
-	@Override
+	
 	public Seguro findByCodigo(String codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		Seguro seguro = (Seguro) sessionFactory.getCurrentSession().createQuery("from Seguro s "
+				+ "where s.codigo = :codigo").setParameter("codigo",codigo).uniqueResult();
+		return seguro;
 	}
 
-	@Override
+	
+	@SuppressWarnings("unchecked")
 	public List<Seguro> findAllSeguros() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Seguro> seguro = sessionFactory.getCurrentSession().createQuery("from Seguro s "
+				+ "order by s.dataInicio").list();
+		return seguro;
 	}
 
-	@Override
+
+	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosVida() {
-		// TODO Auto-generated method stub
-		return null;
+		List<SeguroVida> seguro = sessionFactory.getCurrentSession().createQuery("from SeguroVida s "
+				+ "order by s.dataInicio").list();
+		return seguro;
 	}
 
 	@Override
