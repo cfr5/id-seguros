@@ -35,14 +35,14 @@ public abstract class Seguro {
 
 	// getters
 	@Id
-	@SequenceGenerator(name = "seguroId", sequenceName = "id_seguro_seq")
+	@SequenceGenerator(name = "seguro_Id", sequenceName = "id_seguro_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seguro_Id")
 	@Column
 	public Long getIdSeguro() {
 		return this.idSeguro;
 	}
 	
-	@Column(unique=true, nullable=false)
+	@Column(unique = true, nullable = false)
 	public String getCodigo() {
 		return codigo;
 	}

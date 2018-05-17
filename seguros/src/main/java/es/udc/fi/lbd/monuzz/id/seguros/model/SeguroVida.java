@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "seguroId")
+@PrimaryKeyJoinColumn(name = "seguro_Id")
 @Table(name="SEGUROVIDA")
 public class SeguroVida extends Seguro {
 

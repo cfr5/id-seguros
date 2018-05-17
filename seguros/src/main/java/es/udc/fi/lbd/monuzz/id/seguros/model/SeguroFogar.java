@@ -10,7 +10,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "seguroId")
+@PrimaryKeyJoinColumn(name = "seguro_Id")
 @Table(name="SEGUROFOGAR")
 public class SeguroFogar extends Seguro {
 
@@ -40,7 +40,10 @@ public class SeguroFogar extends Seguro {
 		return this.enderezo;
 	}
 	
-	@Column
+	@ElementCollection
+	@CollectionTable (name = "COBERTURAS", joinColumns = {@JoinColumn(name = "seguro_Id")})//(para indicar táboa e chave foránea)
+	@MapKeyColumn(name = "ETIQUETA")
+	@Column(name = "COBERTURA") //(para indicar a columna cos valores da colección)
 	public Map<String, Float> getCoberturas() {
 		return this.coberturas;
 	}

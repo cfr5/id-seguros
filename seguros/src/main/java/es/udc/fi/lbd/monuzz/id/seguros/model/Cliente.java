@@ -3,11 +3,14 @@ package es.udc.fi.lbd.monuzz.id.seguros.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
 
 
-@SuppressWarnings("unused")
 
+//@SuppressWarnings("unused")
 
+@Entity
+@Table(name = "CLIENTE")
 public class Cliente {
 	
 	private Long idCliente;	
@@ -37,20 +40,30 @@ public class Cliente {
 
 	// GETTERS
 	
-
+	@Id
+	@SequenceGenerator(name = "clienteId", sequenceName = "id_cliente_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clienteId")
+	@Column
 	public Long getIdCliente() {
 		return idCliente;
 	}
+	
+	@Column(unique = true, nullable = false)
 	public String getLogin() {
 		return this.login;
 	}
+	
+	@Column(nullable=false)
 	public String getPassword() {
 		return this.password;
 	}
+	
+	@Column(nullable=false)
 	public String getNome() {
 		return this.nome;
 	}   
 	
+	@OneToMany(mappedBy="codigo",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	public List<Seguro> getSegurosSubscritos() {
 		return this.segurosSubscritos;
 	}
