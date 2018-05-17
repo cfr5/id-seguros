@@ -57,7 +57,8 @@ public abstract class Seguro {
 		return dataFin;
 	}
 	
-	@Column(nullable=false)
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idCliente", nullable = false)
 	public Cliente getSubscritor() {
 		return this.subscritor;
 	}
