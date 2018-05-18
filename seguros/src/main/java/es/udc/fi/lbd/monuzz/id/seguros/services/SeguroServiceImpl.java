@@ -36,15 +36,27 @@ public class SeguroServiceImpl implements SeguroService {
 	}
 	
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public void borradoSeguroBD(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
+		try {
+			seguroDAO.remove(meuSeguro);
+			log.info("Se ha borrado el seguro: " + meuSeguro.toString());
+		}catch (DataAccessException e) {
+			log.error("Error durante el borrado del seguro: " + meuSeguro.toString());
+			throw e;
+		}
 		
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public void modificacionSeguroBD(Seguro meuSeguro) {
-		// TODO Auto-generated method stub
+		try {
+			seguroDAO.update(meuSeguro);
+			log.info("Se ha actualizado el seguro: " + meuSeguro.toString());
+		}catch (DataAccessException e) {
+			log.error("Error durante la actualizacion del seguro: " + meuSeguro.toString());
+			throw e;
+		}
 		
 	}
 
@@ -155,13 +167,13 @@ public class SeguroServiceImpl implements SeguroService {
 		return seguros;
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public Set<Cliente> recuperarTodosBeneficiariosSeguroVidaBD(SeguroVida meuSeguro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public List<SeguroVida> recuperarTodosSegurosVidaBeneficiarioBD(Cliente meuCliente) {
 		
 		List<SeguroVida> seguros;
@@ -176,7 +188,7 @@ public class SeguroServiceImpl implements SeguroService {
 		return seguros;
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public List<SeguroVida> recuperarTodosSegurosSenBeneficiariosBD() {
 
 		List<SeguroVida> seguros;
@@ -191,7 +203,7 @@ public class SeguroServiceImpl implements SeguroService {
 		return seguros;
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public List<Cliente> recuperarTodosClientesSenSegurosBD() {
 
 		List<Cliente> clientes;
@@ -207,7 +219,7 @@ public class SeguroServiceImpl implements SeguroService {
 		
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public List<Cliente> recuperarTodosClientesSenSeguroVidaBD() {
 
 		List<Cliente> clientes;
@@ -222,7 +234,7 @@ public class SeguroServiceImpl implements SeguroService {
 		return clientes;
 	}
 
-	@Override
+	@Transactional(value="meuTransactionManager")
 	public Long recuperarNumBeneficiariosClienteBD(Cliente meuCliente) {
 		
 		Long num;
