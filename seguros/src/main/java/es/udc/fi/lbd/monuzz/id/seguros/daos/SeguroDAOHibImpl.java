@@ -62,7 +62,7 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	@SuppressWarnings("unchecked")
 	public List<Seguro> findAllSeguros() {
 		List<Seguro> seguro = sessionFactory.getCurrentSession().createQuery("from Seguro s "
-				+ "order by s.dataInicio").list();
+				+ "order by s.dataInicio desc").list();
 		return seguro;
 	}
 
@@ -70,14 +70,14 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosVida() {
 		List<SeguroVida> seguro = sessionFactory.getCurrentSession().createQuery("from SeguroVida s "
-				+ "order by s.dataInicio").list();
+				+ "order by s.dataInicio desc").list();
 		return seguro;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<SeguroFogar> findAllSegurosFogar() {
 		List<SeguroFogar> seguro = sessionFactory.getCurrentSession().createQuery("from SeguroFogar s "
-				+ "order by s.dataInicio").list();
+				+ "order by s.dataInicio desc").list();
 		return seguro;
 	}
 
