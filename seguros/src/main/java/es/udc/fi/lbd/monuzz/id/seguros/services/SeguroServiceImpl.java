@@ -4,9 +4,11 @@ package es.udc.fi.lbd.monuzz.id.seguros.services;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import es.udc.fi.lbd.monuzz.id.seguros.model.*;
 
-
+@Service
 public class SeguroServiceImpl implements SeguroService {
 
 	@Override
