@@ -38,8 +38,6 @@ public class ClienteDAOHibImpl implements ClienteDAO {
 	public void remove(Cliente meuCliente) {
 		if (meuCliente.getIdCliente() == null)
 			throw new RuntimeException("Cliente Invalido: O Cliente non pode ser nulo");
-		if (!meuCliente.getSegurosSubscritos().isEmpty())
-			meuCliente.getSegurosSubscritos().clear();;
 		sessionFactory.getCurrentSession().delete(meuCliente);
 		
 	}

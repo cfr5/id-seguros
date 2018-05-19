@@ -41,7 +41,7 @@ public class SeguroVida extends Seguro {
 	
 	//@ElementCollection
 	//@Column(name = "BENEFICIARIO")
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
+	@ManyToMany(fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
 	@JoinTable(
 			name = "BENEFICIARIOS",
 			joinColumns = {@JoinColumn(name = "seguro_Id")},
