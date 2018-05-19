@@ -39,11 +39,14 @@ public class SeguroVida extends Seguro {
 		return this.importe;
 	}
 	
-	@ElementCollection
-	@CollectionTable(name = "BENEFICIARIOS", joinColumns = @JoinColumn(name = "seguros_Id"))
+	//@ElementCollection
 	//@Column(name = "BENEFICIARIO")
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
-	@JoinColumn(name = "beneficiarios")
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
+	@JoinTable(
+			name = "BENEFICIARIOS",
+			joinColumns = {@JoinColumn(name = "cliente_Id")},
+			inverseJoinColumns = {@JoinColumn(name = "seguro_Id")}	
+			)
 	public Set<Cliente> getBeneficiarios() {
 		return this.beneficiarios;
 	}
