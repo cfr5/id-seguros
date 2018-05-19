@@ -88,11 +88,11 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 		return cliente;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Seguro> findAllSegurosSubscritor(Cliente meuCliente) {
 		List<Seguro> seguro = null;
-		seguro = sessionFactory.getCurrentSession().createQuery("select c.segurosSubscritos from Cliente c "
-				+ "where c.cliente_Id= :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+//		seguro = sessionFactory.getCurrentSession().createQuery("from segurosSubscritos c "
+//				+ "where c.cliente_Id= :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+		seguro = meuCliente.getSegurosSubscritos();
 		return seguro;
 	}
 

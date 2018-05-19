@@ -122,8 +122,8 @@ public class TestSeguros {
 		// Comprobar recuperacion sofisticada
 		
 //		// "recuperarTodosSegurosSubscritorBD": servizo que actualiza se é preciso 'Cliente.segurosSubscritos' (e nalgún caso, 'Seguro.subscritor')
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_A.getLogin());
-//		listaxeS = (List<Seguro>) seguroService.recuperarTodosSegurosSubscritorBD(clienteX);				
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_A.getLogin());
+		listaxeS = (List<Seguro>) seguroService.recuperarTodosSegurosSubscritorBD(clienteX);				
 //		// Comprobamos que clienteX.segurosSubscritos() está dispoñible 
 //		assertEquals (listaxeS.size(), 2);
 //		assertEquals (listaxeS.get(0), testUtils.svida_A2);

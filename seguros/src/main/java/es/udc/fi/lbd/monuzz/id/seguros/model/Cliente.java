@@ -63,7 +63,7 @@ public class Cliente {
 		return this.nome;
 	}   
 	
-	@OneToMany(mappedBy="subscritor",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="subscritor",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	public List<Seguro> getSegurosSubscritos() {
 		return this.segurosSubscritos;
 	}
