@@ -121,35 +121,35 @@ public class TestSeguros {
 
 		// Comprobar recuperacion sofisticada
 		
-//		// "recuperarTodosSegurosSubscritorBD": servizo que actualiza se é preciso 'Cliente.segurosSubscritos' (e nalgún caso, 'Seguro.subscritor')
+		// "recuperarTodosSegurosSubscritorBD": servizo que actualiza se é preciso 'Cliente.segurosSubscritos' (e nalgún caso, 'Seguro.subscritor')
 		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_A.getLogin());
 		listaxeS = (List<Seguro>) seguroService.recuperarTodosSegurosSubscritorBD(clienteX);				
-//		// Comprobamos que clienteX.segurosSubscritos() está dispoñible 
-//		assertEquals (listaxeS.size(), 2);
-//		assertEquals (listaxeS.get(0), testUtils.svida_A2);
-//		assertEquals (listaxeS.get(1), testUtils.svida_A1);
-//		assertEquals (clienteX.getSegurosSubscritos().size(), 2);
-//		assertEquals (clienteX.getSegurosSubscritos().get(0), testUtils.svida_A2);
-//		assertEquals (clienteX.getSegurosSubscritos().get(1), testUtils.svida_A1);
-//		// Comprobamos que clienteX figura como subscritor deses seguros
-//		assertEquals (clienteX.getSegurosSubscritos().get(0).getSubscritor(), clienteX);
-//		assertEquals (clienteX.getSegurosSubscritos().get(1).getSubscritor(), clienteX);
-//		assertTrue (clienteX.getSegurosSubscritos().get(0).getSubscritor()==clienteX);
-//		assertTrue (clienteX.getSegurosSubscritos().get(1).getSubscritor()==clienteX);
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_E.getLogin());
-//		listaxeS = (List<Seguro>) seguroService.recuperarTodosSegurosSubscritorBD(clienteX);				
-//		// Comprobamos que clienteX.segurosSubscritos() está dispoñible 
-//		assertEquals (listaxeS.size(), 3);
-//		assertEquals (listaxeS.get(0), testUtils.svida_E2);
-//		assertEquals (listaxeS.get(1), testUtils.svida_E1);
-//		assertEquals (listaxeS.get(2), testUtils.sfogar_E);
-//		assertEquals (clienteX.getSegurosSubscritos().size(), 3);
-//		assertEquals (clienteX.getSegurosSubscritos().get(0), testUtils.svida_E2);
-//		assertEquals (clienteX.getSegurosSubscritos().get(1), testUtils.svida_E1);
-//		assertEquals (clienteX.getSegurosSubscritos().get(2), testUtils.sfogar_E);
-//		// Comprobamos que clienteX figura como subscritor deses seguros
-//		assertEquals (clienteX.getSegurosSubscritos().get(0).getSubscritor(), clienteX);
-//		assertEquals (clienteX.getSegurosSubscritos().get(1).getSubscritor(), clienteX);
+		// Comprobamos que clienteX.segurosSubscritos() está dispoñible 
+		assertEquals (listaxeS.size(), 2);
+		assertEquals (listaxeS.get(0), testUtils.svida_A2);
+		assertEquals (listaxeS.get(1), testUtils.svida_A1);
+		assertEquals (clienteX.getSegurosSubscritos().size(), 2);
+		assertEquals (clienteX.getSegurosSubscritos().get(0), testUtils.svida_A2);
+		assertEquals (clienteX.getSegurosSubscritos().get(1), testUtils.svida_A1);
+		// Comprobamos que clienteX figura como subscritor deses seguros
+		assertEquals (clienteX.getSegurosSubscritos().get(0).getSubscritor(), clienteX);
+		assertEquals (clienteX.getSegurosSubscritos().get(1).getSubscritor(), clienteX);
+		assertTrue (clienteX.getSegurosSubscritos().get(0).getSubscritor()==clienteX);
+		assertTrue (clienteX.getSegurosSubscritos().get(1).getSubscritor()==clienteX);
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_E.getLogin());
+		listaxeS = (List<Seguro>) seguroService.recuperarTodosSegurosSubscritorBD(clienteX);				
+		// Comprobamos que clienteX.segurosSubscritos() está dispoñible 
+		assertEquals (listaxeS.size(), 3);
+		assertEquals (listaxeS.get(0), testUtils.svida_E2);
+		assertEquals (listaxeS.get(1), testUtils.svida_E1);
+		assertEquals (listaxeS.get(2), testUtils.sfogar_E);
+		assertEquals (clienteX.getSegurosSubscritos().size(), 3);
+		assertEquals (clienteX.getSegurosSubscritos().get(0), testUtils.svida_E2);
+		assertEquals (clienteX.getSegurosSubscritos().get(1), testUtils.svida_E1);
+		assertEquals (clienteX.getSegurosSubscritos().get(2), testUtils.sfogar_E);
+		// Comprobamos que clienteX figura como subscritor deses seguros
+		assertEquals (clienteX.getSegurosSubscritos().get(0).getSubscritor(), clienteX);
+		assertEquals (clienteX.getSegurosSubscritos().get(1).getSubscritor(), clienteX);
 //
 //		// "recuperarSubscritorSeguroBD": servizo que actualiza se é preciso 'Seguro.subscritor'
 //		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());

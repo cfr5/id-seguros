@@ -64,6 +64,7 @@ public class Cliente {
 	}   
 	
 	@OneToMany(mappedBy="subscritor",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OrderBy("dataInicio desc")
 	public List<Seguro> getSegurosSubscritos() {
 		return this.segurosSubscritos;
 	}
