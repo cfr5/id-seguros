@@ -40,9 +40,10 @@ public class SeguroVida extends Seguro {
 	}
 	
 	@ElementCollection
-	@CollectionTable(name = "BENEFICIARIOS", joinColumns = @JoinColumn(name = "cliente_Id"))
+	@CollectionTable(name = "BENEFICIARIOS", joinColumns = @JoinColumn(name = "seguros_Id"))
 	//@Column(name = "BENEFICIARIO")
-	@OneToMany(mappedBy = "login", cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
+	@JoinColumn(name = "beneficiarios")
 	public Set<Cliente> getBeneficiarios() {
 		return this.beneficiarios;
 	}
