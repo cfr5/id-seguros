@@ -42,7 +42,7 @@ public class TestClientes {
 	@After
 	public void tearDown() throws Exception {
 		log.info ("Eliminando clientes iniciais para caso de proba: " + this.getClass().getName() + " ========================================");
-		//testUtils.eliminaSetClientesProba(); 
+		testUtils.eliminaSetClientesProba(); 
 		log.info ("Foron eliminados con éxito os datos de clientes iniciais para o caso de proba: " + this.getClass().getName() + " ==========");
 	}
 	
@@ -56,7 +56,7 @@ public class TestClientes {
 		log.info ("INICIANDO [Test_Actualizacion] en: " + this.getClass().getName() + " ======================================================");
 		c_Test_Actualizacion();
 		log.info ("INICIANDO [Test_Borrado] en: " + this.getClass().getName() + " ============================================================");
-		//d_Test_Borrado();
+		d_Test_Borrado();
 
 	}
 	
