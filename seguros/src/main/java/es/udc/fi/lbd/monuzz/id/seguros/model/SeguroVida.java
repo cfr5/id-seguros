@@ -44,8 +44,8 @@ public class SeguroVida extends Seguro {
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
 	@JoinTable(
 			name = "BENEFICIARIOS",
-			joinColumns = {@JoinColumn(name = "cliente_Id")},
-			inverseJoinColumns = {@JoinColumn(name = "seguro_Id")}	
+			joinColumns = {@JoinColumn(name = "seguro_Id")},
+			inverseJoinColumns = {@JoinColumn(name = "cliente_Id")}	
 			)
 	public Set<Cliente> getBeneficiarios() {
 		return this.beneficiarios;
