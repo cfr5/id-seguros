@@ -152,15 +152,15 @@ public class TestSeguros {
 		assertEquals (clienteX.getSegurosSubscritos().get(1).getSubscritor(), clienteX);
 //
 //		// "recuperarSubscritorSeguroBD": servizo que actualiza se é preciso 'Seguro.subscritor'
-//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
-//		clienteX =  seguroService.recuperarSubscritorSeguroBD(svidaX);
-//		assertEquals (clienteX, testUtils.cliente_A);
-//		assertEquals (svidaX.getSubscritor(), testUtils.cliente_A);
-//
-//		sfogarX = (SeguroFogar) seguroService.recuperarSeguroBDPorCodigo(testUtils.sfogar_D.getCodigo());
-//		clienteX =  seguroService.recuperarSubscritorSeguroBD(sfogarX);
-//		assertEquals (clienteX, testUtils.cliente_D);
-//		assertEquals (sfogarX.getSubscritor(), testUtils.cliente_D);
+		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
+		clienteX =  seguroService.recuperarSubscritorSeguroBD(svidaX);
+		assertEquals (clienteX, testUtils.cliente_A);
+		assertEquals (svidaX.getSubscritor(), testUtils.cliente_A);
+
+		sfogarX = (SeguroFogar) seguroService.recuperarSeguroBDPorCodigo(testUtils.sfogar_D.getCodigo());
+		clienteX =  seguroService.recuperarSubscritorSeguroBD(sfogarX);
+		assertEquals (clienteX, testUtils.cliente_D);
+		assertEquals (sfogarX.getSubscritor(), testUtils.cliente_D);
 //		
 //		// "recuperarTodosBeneficiariosSeguroVidaBD": servizo que actualiza se é preciso 'Seguro.beneficiarios'
 //		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());

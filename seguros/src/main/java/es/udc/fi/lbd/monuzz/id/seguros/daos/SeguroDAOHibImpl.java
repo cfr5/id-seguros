@@ -83,8 +83,7 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 
 	//COIDAO CON ESTOS 3
 	public Cliente findSubscritorSeguro(Seguro meuSeguro) {
-		Cliente cliente = (Cliente) sessionFactory.getCurrentSession().createQuery("from Seguro s "
-				+ "where s.subscritor = :subscritor").setParameter("subscritor", meuSeguro.getSubscritor()).uniqueResult();
+		Cliente cliente = meuSeguro.getSubscritor();
 		return cliente;
 	}
 
