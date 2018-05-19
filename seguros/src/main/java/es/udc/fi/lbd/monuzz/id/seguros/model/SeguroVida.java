@@ -42,7 +42,7 @@ public class SeguroVida extends Seguro {
 	@ElementCollection
 	@CollectionTable(name = "BENEFICIARIOS", joinColumns = @JoinColumn(name = "cliente_Id"))
 	//@Column(name = "BENEFICIARIO")
-	@OneToMany(mappedBy = "login", fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
+	@OneToMany(mappedBy = "login", cascade=CascadeType.ALL, fetch = FetchType.LAZY)//mirar o de cascade=CascadeType.ALL
 	public Set<Cliente> getBeneficiarios() {
 		return this.beneficiarios;
 	}
