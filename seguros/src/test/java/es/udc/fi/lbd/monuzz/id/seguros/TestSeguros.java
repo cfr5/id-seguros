@@ -67,8 +67,8 @@ public class TestSeguros {
 	public void testCompleto() {
 		log.info ("INICIANDO [Test_Consulta] en  " + this.getClass().getName() + "===========================================================");
 		a_Test_Consulta();
-//		log.info ("INICIANDO [Test_Alta] en  " + this.getClass().getName() + "===============================================================");
-//		b_Test_Alta();
+		log.info ("INICIANDO [Test_Alta] en  " + this.getClass().getName() + "===============================================================");
+		b_Test_Alta();
 //		log.info ("INICIANDO [Test_Actualizacion] en  " + this.getClass().getName() + "======================================================");
 //		c_Test_Actualizacion();
 //		log.info ("INICIANDO [Test_Borrado] en  " + this.getClass().getName() + "============================================================");
@@ -161,12 +161,12 @@ public class TestSeguros {
 		clienteX =  seguroService.recuperarSubscritorSeguroBD(sfogarX);
 		assertEquals (clienteX, testUtils.cliente_D);
 		assertEquals (sfogarX.getSubscritor(), testUtils.cliente_D);
-//		
-//		// "recuperarTodosBeneficiariosSeguroVidaBD": servizo que actualiza se é preciso 'Seguro.beneficiarios'
-//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
-//		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
-//		// Comprobamos que svidaX.beneficiarios() está dispoñible 
-//		assertEquals (conxuntoC.size(), 2);
+		
+		// "recuperarTodosBeneficiariosSeguroVidaBD": servizo que actualiza se é preciso 'Seguro.beneficiarios'
+		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
+		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
+		// Comprobamos que svidaX.beneficiarios() está dispoñible 
+		assertEquals (conxuntoC.size(), 2);
 //		assertTrue (conxuntoC.contains(testUtils.cliente_B));
 //		assertTrue (conxuntoC.contains(testUtils.cliente_C));
 //		assertEquals (svidaX.getBeneficiarios().size(), 2);
@@ -187,22 +187,22 @@ public class TestSeguros {
 //		assertEquals (conxuntoC.size(), 0);
 //		assertEquals (svidaX.getBeneficiarios().size(),0);
 //
-//		// "recuperarTodosSegurosVidaBeneficiarioBD"
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_B.getLogin());
-//		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
-//		assertEquals (listaxeSV.size(),2);
-//		assertEquals (listaxeSV.get(0), testUtils.svida_A2);
-//		assertEquals (listaxeSV.get(1), testUtils.svida_A1);
-//		
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_C.getLogin());
-//		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
-//		assertEquals (listaxeSV.size(),1);
-//		assertEquals (listaxeSV.get(0), testUtils.svida_A1);
-//
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_D.getLogin());
-//		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
-//		assertEquals (listaxeSV.size(),0);
-//
+		// "recuperarTodosSegurosVidaBeneficiarioBD"
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_B.getLogin());
+		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
+		assertEquals (listaxeSV.size(),2);
+		assertEquals (listaxeSV.get(0), testUtils.svida_A2);
+		assertEquals (listaxeSV.get(1), testUtils.svida_A1);
+		
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_C.getLogin());
+		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
+		assertEquals (listaxeSV.size(),1);
+		assertEquals (listaxeSV.get(0), testUtils.svida_A1);
+
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_D.getLogin());
+		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
+		assertEquals (listaxeSV.size(),0);
+
 //		// "recuperarTodosSegurosSenBeneficiariosBD"
 //		listaxeSV = seguroService.recuperarTodosSegurosSenBeneficiariosBD();
 //		assertEquals (listaxeSV.size(),2);

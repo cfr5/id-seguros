@@ -169,8 +169,16 @@ public class SeguroServiceImpl implements SeguroService {
 
 	@Transactional(value="meuTransactionManager")
 	public Set<Cliente> recuperarTodosBeneficiariosSeguroVidaBD(SeguroVida meuSeguro) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Cliente> cliente;
+		
+		try {
+			cliente = seguroDAO.findAllBeneficiariosSeguroVida(meuSeguro);
+			log.info("Se han buscado todos los beneficiarios de: " + meuSeguro.toString() );
+		}catch (DataAccessException e) {
+			log.error("Error buscando todos los seguros de. " + meuSeguro.toString());
+			throw e;
+		}
+		return cliente;
 	}
 
 	@Transactional(value="meuTransactionManager")

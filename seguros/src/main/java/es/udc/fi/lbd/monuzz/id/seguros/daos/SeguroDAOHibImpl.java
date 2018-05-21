@@ -98,18 +98,17 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Set<Cliente> findAllBeneficiariosSeguroVida(SeguroVida meuSeguro) {
-		Set<Cliente> beneficiarios = new HashSet<Cliente>();
-		beneficiarios = (Set<Cliente>) sessionFactory.getCurrentSession().createQuery("select s.beneficiarios from SeguroVida s"
-				+ "where s.seguro_Id = :seguro_Id").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
+		List<Cliente> list = sessionFactory.getCurrentSession().createQuery("select b from SeguroVida s join s.beneficiarios b "
+				+ "where s.idSeguro = :seguro_Id ").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
+		Set<Cliente> beneficiarios = new HashSet<Cliente>(list);
 		return beneficiarios;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosVidaBeneficiario(Cliente meuCliente) {
 		List<SeguroVida> seguro = null;
-		seguro = sessionFactory.getCurrentSession().createQuery("select c.segurosSubscritos from Cliente c"
-				+ "where c.cliente_Id = :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+		seguro = sessionFactory.getCurrentSession().createQuery("select s from SeguroVida s join s.beneficiarios b "
+				+ "where b.idCliente = :cliente_Id order by s.dataInicio desc").setLong("cliente_Id", meuCliente.getIdCliente()).list();
 		return seguro;
 	}
 
