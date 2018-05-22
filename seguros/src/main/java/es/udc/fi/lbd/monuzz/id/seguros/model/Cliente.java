@@ -63,7 +63,7 @@ public class Cliente {
 		return this.nome;
 	}   
 	
-	@OneToMany(mappedBy="subscritor",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="subscritor",cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@OrderBy("dataInicio desc")
 	public List<Seguro> getSegurosSubscritos() {
 		return this.segurosSubscritos;
