@@ -159,6 +159,7 @@ public class SeguroServiceImpl implements SeguroService {
 		
 		try {
 			seguros = seguroDAO.findAllSegurosSubscritor(meuCliente);
+			meuCliente.setSegurosSubscritos(seguros);
 			log.info("Se han buscado todos los seguros de: " + meuCliente.toString() );
 		}catch (DataAccessException e) {
 			log.error("Error buscando todos los seguros de. " + meuCliente.toString());
@@ -173,6 +174,7 @@ public class SeguroServiceImpl implements SeguroService {
 		
 		try {
 			cliente = seguroDAO.findAllBeneficiariosSeguroVida(meuSeguro);
+			meuSeguro.setBeneficiarios(cliente);
 			log.info("Se han buscado todos los beneficiarios de: " + meuSeguro.toString() );
 		}catch (DataAccessException e) {
 			log.error("Error buscando todos los seguros de. " + meuSeguro.toString());

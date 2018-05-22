@@ -69,10 +69,10 @@ public class TestSeguros {
 		a_Test_Consulta();
 		log.info ("INICIANDO [Test_Alta] en  " + this.getClass().getName() + "===============================================================");
 		b_Test_Alta();
-//		log.info ("INICIANDO [Test_Actualizacion] en  " + this.getClass().getName() + "======================================================");
-//		c_Test_Actualizacion();
-//		log.info ("INICIANDO [Test_Borrado] en  " + this.getClass().getName() + "============================================================");
-//		d_Test_Borrado();
+		log.info ("INICIANDO [Test_Actualizacion] en  " + this.getClass().getName() + "======================================================");
+		c_Test_Actualizacion();
+		log.info ("INICIANDO [Test_Borrado] en  " + this.getClass().getName() + "============================================================");
+		d_Test_Borrado();
 
 
 	}
@@ -163,29 +163,29 @@ public class TestSeguros {
 		assertEquals (sfogarX.getSubscritor(), testUtils.cliente_D);
 		
 		// "recuperarTodosBeneficiariosSeguroVidaBD": servizo que actualiza se é preciso 'Seguro.beneficiarios'
-//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
-//		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
-//		// Comprobamos que svidaX.beneficiarios() está dispoñible 
-//		assertEquals (conxuntoC.size(), 2);
-//		assertTrue (conxuntoC.contains(testUtils.cliente_B));
-//		assertTrue (conxuntoC.contains(testUtils.cliente_C));
-//		assertEquals (svidaX.getBeneficiarios().size(), 2);
-//		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_B));
-//		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_C));
-//
-//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A2.getCodigo());
-//		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
-//		// Comprobamos que svidaX.beneficiarios() está dispoñible 
-//		assertEquals (conxuntoC.size(), 1);
-//		assertTrue (conxuntoC.contains(testUtils.cliente_B));
-//		assertEquals (svidaX.getBeneficiarios().size(), 1);
-//		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_B));
-//
-//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_E1.getCodigo());
-//		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
-//		// Comprobamos que svidaX.beneficiarios() está dispoñible 
-//		assertEquals (conxuntoC.size(), 0);
-//		assertEquals (svidaX.getBeneficiarios().size(),0);
+		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
+		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
+		// Comprobamos que svidaX.beneficiarios() está dispoñible 
+		assertEquals (conxuntoC.size(), 2);
+		assertTrue (conxuntoC.contains(testUtils.cliente_B));
+		assertTrue (conxuntoC.contains(testUtils.cliente_C));
+		assertEquals (svidaX.getBeneficiarios().size(), 2);
+		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_B));
+		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_C));
+
+		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A2.getCodigo());
+		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
+		// Comprobamos que svidaX.beneficiarios() está dispoñible 
+		assertEquals (conxuntoC.size(), 1);
+		assertTrue (conxuntoC.contains(testUtils.cliente_B));
+		assertEquals (svidaX.getBeneficiarios().size(), 1);
+		assertTrue (svidaX.getBeneficiarios().contains(testUtils.cliente_B));
+
+		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_E1.getCodigo());
+		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
+		// Comprobamos que svidaX.beneficiarios() está dispoñible 
+		assertEquals (conxuntoC.size(), 0);
+		assertEquals (svidaX.getBeneficiarios().size(),0);
 
 		// "recuperarTodosSegurosVidaBeneficiarioBD"
 		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_B.getLogin());
@@ -204,11 +204,11 @@ public class TestSeguros {
 		assertEquals (listaxeSV.size(),0);
 
 		// "recuperarTodosSegurosSenBeneficiariosBD"
-//		listaxeSV = seguroService.recuperarTodosSegurosSenBeneficiariosBD();
-//		assertEquals (listaxeSV.size(),2);
-//		assertEquals (listaxeSV.get(0), testUtils.svida_E1);
-//		assertEquals (listaxeSV.get(1), testUtils.svida_E2);
-//
+		listaxeSV = seguroService.recuperarTodosSegurosSenBeneficiariosBD();
+		assertEquals (listaxeSV.size(),2);
+		assertEquals (listaxeSV.get(0), testUtils.svida_E1);
+		assertEquals (listaxeSV.get(1), testUtils.svida_E2);
+
 		// "recuperarTodosClientesSenSegurosBD"
 		listaxeC = seguroService.recuperarTodosClientesSenSegurosBD();
 		assertEquals (listaxeC.size(),2);

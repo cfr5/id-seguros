@@ -39,7 +39,7 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 
 	
 	public void remove(Seguro meuSeguro) {
-		if (meuSeguro == null)
+		if (meuSeguro.getIdSeguro() == null)
 			throw new RuntimeException("Seguro Invalido: O Seguro non pode ser nulo");
 		sessionFactory.getCurrentSession().delete(meuSeguro);	
 		
@@ -87,10 +87,11 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 		return cliente;
 	}
 
+	
 	public List<Seguro> findAllSegurosSubscritor(Cliente meuCliente) {
 		List<Seguro> seguro = null;
-//		seguro = sessionFactory.getCurrentSession().createQuery("from segurosSubscritos c "
-//				+ "where c.cliente_Id= :cliente_Id").setLong("cliente_Id", meuCliente.getIdCliente()).list();
+//		seguro = sessionFactory.getCurrentSession().createQuery("select s from Seguro s "
+//				+ "where s.subscritor= :cliente_Id order by s.dataInicio desc").setLong("cliente_Id", meuCliente.getIdCliente()).list();
 		seguro = meuCliente.getSegurosSubscritos();
 		return seguro;
 	}
@@ -98,10 +99,9 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Set<Cliente> findAllBeneficiariosSeguroVida(SeguroVida meuSeguro) {
-		List<Cliente> list = sessionFactory.getCurrentSession().createQuery("select c from SeguroVida s join s.beneficiarios b join Cliente c "
-				+ "where c.idCliente = b.idCliente and b.idSeguro = :seguro_Id ").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
+		List<Cliente> list = sessionFactory.getCurrentSession().createQuery("select b from SeguroVida s join s.beneficiarios b "
+				+ "where s.idSeguro = :seguro_Id").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
 		Set<Cliente> beneficiarios = new HashSet<Cliente>(list);
-//		Set<Cliente> beneficiarios = meuSeguro.getBeneficiarios();
 		return beneficiarios;
 	}
 
@@ -118,7 +118,7 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	public List<SeguroVida> findAllSegurosSenBeneficiarios() {
 		List<SeguroVida> seguro = null;
 		seguro = sessionFactory.getCurrentSession().createQuery("select s from SeguroVida s "
-				+ "where s.idSeguro not in (select distinct b.idSeguro from s.beneficiarios b) order by s.dataInicio desc").list();
+				+ "where s.beneficiarios is EMPTY order by s.dataInicio asc").list();
 		return seguro;
 	}
 
