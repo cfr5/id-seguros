@@ -98,9 +98,10 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Set<Cliente> findAllBeneficiariosSeguroVida(SeguroVida meuSeguro) {
-		List<Cliente> list = sessionFactory.getCurrentSession().createQuery("select b from SeguroVida s join s.beneficiarios b "
-				+ "where s.idSeguro = :seguro_Id ").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
+		List<Cliente> list = sessionFactory.getCurrentSession().createQuery("select c from SeguroVida s join s.beneficiarios b join Cliente c "
+				+ "where c.idCliente = b.idCliente and b.idSeguro = :seguro_Id ").setLong("seguro_Id", meuSeguro.getIdSeguro()).list();
 		Set<Cliente> beneficiarios = new HashSet<Cliente>(list);
+//		Set<Cliente> beneficiarios = meuSeguro.getBeneficiarios();
 		return beneficiarios;
 	}
 
@@ -116,7 +117,8 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	@SuppressWarnings("unchecked")
 	public List<SeguroVida> findAllSegurosSenBeneficiarios() {
 		List<SeguroVida> seguro = null;
-		seguro = sessionFactory.getCurrentSession().createQuery("from SeguroVida s where s.beneficiario is NULL order by s.dataInicio desc").list();
+		seguro = sessionFactory.getCurrentSession().createQuery("select s from SeguroVida s "
+				+ "where s.idSeguro not in (select distinct b.idSeguro from s.beneficiarios b) order by s.dataInicio desc").list();
 		return seguro;
 	}
 
@@ -124,7 +126,8 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	@SuppressWarnings("unchecked")
 	public List<Cliente> findAllClientesSenSeguros() {
 		List<Cliente> cliente = null;
-		cliente = sessionFactory.getCurrentSession().createQuery("from Cliente c where c.segurosSubscritos is NULL order by c.login").list();
+		cliente = sessionFactory.getCurrentSession().createQuery("select c from Cliente c "
+		+ "where c.idCliente not in (select s.subscritor from Seguro s) order by c.login").list();
 		return cliente;
 	}
 
@@ -132,14 +135,15 @@ public class SeguroDAOHibImpl implements SeguroDAO {
 	@SuppressWarnings("unchecked")
 	public List<Cliente> findAllClientesSenSeguroVida() {
 		List<Cliente> cliente = null;
-		cliente = sessionFactory.getCurrentSession().createQuery("from Cliente c where c.segurosSubscritos is not in (select s.codigo from SeguroVida s) order by c.login").list();
+		cliente = sessionFactory.getCurrentSession().createQuery("select c from Cliente c "
+				+ "where c.idCliente not in (select s.subscritor from SeguroVida s) order by c.login").list();
 		return cliente;
 	}
 
 	
 	public Long findNumBeneficiariosCliente(Cliente meuCliente) {
-		Long beneficiarios = (Long) sessionFactory.getCurrentSession().createQuery("select count(s.beneficiarios) from SeguroVida s"
-				+ "where s.suscriptor = :meuCliente").setLong("meuCliente", meuCliente.getIdCliente()).uniqueResult();
+		Long beneficiarios = (Long) sessionFactory.getCurrentSession().createQuery("select count(distinct b) from SeguroVida s join s.beneficiarios b "
+				+ "where s.subscritor = :meuCliente").setLong("meuCliente", meuCliente.getIdCliente()).uniqueResult();
 		return beneficiarios;
 	}
 

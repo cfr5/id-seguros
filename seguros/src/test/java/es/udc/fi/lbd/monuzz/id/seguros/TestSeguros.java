@@ -163,10 +163,10 @@ public class TestSeguros {
 		assertEquals (sfogarX.getSubscritor(), testUtils.cliente_D);
 		
 		// "recuperarTodosBeneficiariosSeguroVidaBD": servizo que actualiza se é preciso 'Seguro.beneficiarios'
-		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
-		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
-		// Comprobamos que svidaX.beneficiarios() está dispoñible 
-		assertEquals (conxuntoC.size(), 2);
+//		svidaX = (SeguroVida) seguroService.recuperarSeguroBDPorCodigo(testUtils.svida_A1.getCodigo());
+//		conxuntoC = (Set<Cliente>)seguroService.recuperarTodosBeneficiariosSeguroVidaBD(svidaX);
+//		// Comprobamos que svidaX.beneficiarios() está dispoñible 
+//		assertEquals (conxuntoC.size(), 2);
 //		assertTrue (conxuntoC.contains(testUtils.cliente_B));
 //		assertTrue (conxuntoC.contains(testUtils.cliente_C));
 //		assertEquals (svidaX.getBeneficiarios().size(), 2);
@@ -186,7 +186,7 @@ public class TestSeguros {
 //		// Comprobamos que svidaX.beneficiarios() está dispoñible 
 //		assertEquals (conxuntoC.size(), 0);
 //		assertEquals (svidaX.getBeneficiarios().size(),0);
-//
+
 		// "recuperarTodosSegurosVidaBeneficiarioBD"
 		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_B.getLogin());
 		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
@@ -203,34 +203,34 @@ public class TestSeguros {
 		listaxeSV = seguroService.recuperarTodosSegurosVidaBeneficiarioBD(clienteX);
 		assertEquals (listaxeSV.size(),0);
 
-//		// "recuperarTodosSegurosSenBeneficiariosBD"
+		// "recuperarTodosSegurosSenBeneficiariosBD"
 //		listaxeSV = seguroService.recuperarTodosSegurosSenBeneficiariosBD();
 //		assertEquals (listaxeSV.size(),2);
 //		assertEquals (listaxeSV.get(0), testUtils.svida_E1);
 //		assertEquals (listaxeSV.get(1), testUtils.svida_E2);
 //
-//		// "recuperarTodosClientesSenSegurosBD"
-//		listaxeC = seguroService.recuperarTodosClientesSenSegurosBD();
-//		assertEquals (listaxeC.size(),2);
-//		assertEquals (listaxeC.get(0), testUtils.cliente_B);
-//		assertEquals (listaxeC.get(1), testUtils.cliente_C);
-//
-//		// "recuperarTodosClientesSenSeguroVidaBD"
-//		listaxeC = seguroService.recuperarTodosClientesSenSeguroVidaBD();
-//		assertEquals (listaxeC.size(),3);
-//		assertEquals (listaxeC.get(0), testUtils.cliente_B);
-//		assertEquals (listaxeC.get(1), testUtils.cliente_C);
-//		assertEquals (listaxeC.get(2), testUtils.cliente_D);
-//
-//		// "recuperarNumBeneficiariosClienteBD"
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_A.getLogin());
-//		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(2));
-//
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_D.getLogin());
-//		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(0));
-//
-//		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_E.getLogin());
-//		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(0));
+		// "recuperarTodosClientesSenSegurosBD"
+		listaxeC = seguroService.recuperarTodosClientesSenSegurosBD();
+		assertEquals (listaxeC.size(),2);
+		assertEquals (listaxeC.get(0), testUtils.cliente_B);
+		assertEquals (listaxeC.get(1), testUtils.cliente_C);
+
+		// "recuperarTodosClientesSenSeguroVidaBD"
+		listaxeC = seguroService.recuperarTodosClientesSenSeguroVidaBD();
+		assertEquals (listaxeC.size(),3);
+		assertEquals (listaxeC.get(0), testUtils.cliente_B);
+		assertEquals (listaxeC.get(1), testUtils.cliente_C);
+		assertEquals (listaxeC.get(2), testUtils.cliente_D);
+		
+		// "recuperarNumBeneficiariosClienteBD"
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_A.getLogin());
+		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(2));
+
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_D.getLogin());
+		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(0));
+
+		clienteX = clienteService.recuperarClienteBDPorLogin(testUtils.cliente_E.getLogin());
+		assertEquals (seguroService.recuperarNumBeneficiariosClienteBD(clienteX),new Long(0));
 		
 
 	}
